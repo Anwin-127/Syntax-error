@@ -1,12 +1,36 @@
-import { Component, Renderer2, ElementRef } from '@angular/core';
+import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-getstarted',
   templateUrl: './getstarted.component.html',
   styleUrls: ['./getstarted.component.css']
 })
-export class GetstartedComponent {
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+export class GetstartedComponent implements OnInit {
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+  });
+
+  constructor(private authService: AuthenticationService,
+     private renderer: Renderer2,
+      private el: ElementRef,
+       private router: Router,
+       private toast:HotToastService) { }
+
+  ngOnInit(): void { }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   ngAfterViewInit() {
 
@@ -23,4 +47,22 @@ export class GetstartedComponent {
       this.renderer.removeClass(container, 'right-panel-active');
     });
   }
+
+  submit() {
+    if (!this.loginForm.valid) {
+      return;
+    }
+    const { email, password } = this.loginForm.value;
+    this.authService.login(email!, password!).pipe(
+      this.toast.observe({
+        success : "Logged in successfully",
+        loading : "Logging in",
+        error : "There was an eror"
+      }
+      )
+    ).subscribe(() => {
+      this.router.navigate(['/home'])
+    })
+  }
+
 }
