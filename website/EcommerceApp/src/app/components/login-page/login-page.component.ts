@@ -1,16 +1,16 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
-  selector: 'app-getstarted',
-  templateUrl: './getstarted.component.html',
-  styleUrls: ['./getstarted.component.css']
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.css']
 })
-export class GetstartedComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
