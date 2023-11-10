@@ -1,8 +1,37 @@
-<div class="container-box">
-    <div class="nav-login-cart">
-        <p>Welcome to FLOPKART, where fashion, style, and convenience come together in perfect harmony.
-            Explore a world of endless possibilities, where your shopping desires meet an unmatched selection of the
-            latest trends, must-have essentials, and exclusive deals.  Get ready to indulge in retail therapy, because at [Your Shopping
-            Website], shopping is not just a task; it's a delightful journey.</p>
-        <button routerLink="/login">Get started</button>
+<div class="cart-top container-fluid">
+    <div class="container d-flex">
+        <div class="items">
+            <a>
+                <img src="https://pinnaclebenefits.com/wp-content/uploads/2019/07/Icon-Products-Button.png" alt="">
+                <h6>All Products</h6>
+            </a>
+        </div>
+        <div class="items">
+            <a>
+                <img src="https://pinnaclebenefits.com/wp-content/uploads/2019/07/Icon-Products-Button.png" alt="">
+                <h6>Electronics</h6>
+            </a>
+        </div>
+        <div class="items">
+            <a>
+                <img src="https://pinnaclebenefits.com/wp-content/uploads/2019/07/Icon-Products-Button.png" alt="">
+                <h6>Fashion</h6>
+            </a>
+        </div>
     </div>
+</div>
+<div class="container">
+    <div class="row">
+        <ng-container *ngFor="let item of productList">
+            <div class="card col-md-3">
+                <img src="{{item.image}}" alt="">
+                <h5 class="itemdata">{{item.title}}</h5>
+                <p class="itemdata">{{item.description}}</p>
+                <p><strong>Price:</strong>${{item.price}}</p>
+                <p>{{item.category}}</p>
+
+                <button class="btn btn-primary">Add to cart</button>
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -1,37 +1,41 @@
-.container-box{
-    font-family: "poppins", sans-serif;
-    font-size: 25px;
-    
-    justify-content: center;
-    padding-left: 4%;
-    padding-right: 4%;
-}
-.nav-login-cart{
+.cart-top{
     display: flex;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: cornsilk;
+    background-clip: border-box;
+    position: relative;
     flex-direction: column;
-    align-items: center;
-    /* position: static;  */
-    justify-content: center;
-    padding-top: 10%;
-
+    border: 1px solid black;
+    border-radius: .25rem;
 }
-.nav-login-cart button{
-    width: 150px;
-    height: 60px;
-    outline: none;
-    border: 3px solid #7a7a7a;
-    border-radius: 75px;
-    color: #515151;
-    font-size: 20px;
-    font-family: "poppins",sans-serif;
-    font-weight: 900;
-    background: white;
-    cursor: pointer;
+.items{
+    margin: 0px 15px;
+    text-align: center;
 }
-.nav-login-cart button:hover{
-   color: rgb(244, 29, 108);
-   border-color:rgb(244, 29, 108);
+.items img{
+    width: 65px;
 }
-.nav-login-cart button:active{
-    background: #f3f3f3;
+.items a:hover{
+    color: rgb(118, 118, 118);
+}
+.itemdata{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100ch;
+}
+.card{
+    padding: 20px;
+    margin: 0px;
+}
+.card img{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 15px;
+    transition: 0.5s ease-in-out;
+}
+.card img:hover{
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
 }
