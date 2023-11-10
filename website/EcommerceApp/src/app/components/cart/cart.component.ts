@@ -8,7 +8,7 @@ import { CartapiService } from 'src/app/services/cartapi.service';
 })
 export class CartComponent implements OnInit {
   products:any = [];
-  allProducts:any = 0;
+  public allProducts: any = 0;
   constructor(private cartApi:CartapiService) {}
 
   ngOnInit(): void {

@@ -23,6 +23,13 @@
                     <td>{{item.total}}</td>
                     <td><button (click)="removeProduct(item)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
                 </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td><button (click)="removeAllProduct()" class="btn btn-danger">Remve all items</button></td>
+                    <td><button routerLink="/home" class="btn btn-warning">Shop more</button></td>
+                    <td><button class="btn btn-success">Check out</button></td>
+                    <td><strong>Total: ${{allProducts}}</strong></td>
+                </tr>
             </tbody>
         </table>
     </div>
