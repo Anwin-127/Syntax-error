@@ -1,4 +1,4 @@
-<ng-container *ngIf="true">
+<ng-container *ngIf="products.length != 0">
 <div class="card-table">
     <div class="card-product">
         <table class="table table-responsive">
@@ -14,14 +14,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>book</td>
-                    <td>img...</td>
-                    <td>500</td>
-                    <td>2</td>
-                    <td>1000</td>
-                    <td><button class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                <tr *ngFor="let item of products, let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.title}}</td>
+                    <td><img src="{{item.image}}" style="width: 120px;" alt=""></td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.total}}</td>
+                    <td><button (click)="removeProduct(item)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
                 </tr>
             </tbody>
         </table>
@@ -30,7 +30,7 @@
 
 </ng-container>
 
-<ng-container *ngIf="false">
+<ng-container *ngIf="products.length == 0">
 <div class="container">
     <div class="card">
         <h4 class="card-title">My cart</h4>
@@ -39,7 +39,7 @@
         <img src="" alt="">
         <h5>Cart is empty!</h5>
         <h6>Add items to your cart and it will show up here</h6>
-        <button class="btn btn-primary">Shop now</button>
+        <button routerLink="/home" class="btn btn-primary">Shop now</button>
     </div>
 </div>
 </ng-container>
