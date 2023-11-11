@@ -20,12 +20,20 @@ export class CartapiService {
     this.productList.next(product)
   }
 
-  addToCart(product:any){
-    this.cartDataList.push(product);
+  addToCart(product: any) {
+    const existingProduct = this.cartDataList.find((p: any) => p.id === product.id);
+  
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      this.cartDataList.push({ ...product, quantity: 1 });
+    }
+  
     this.productList.next(this.cartDataList);
     this.getTotalAmount();
-    console.log(this.cartDataList)
+    console.log(this.cartDataList);
   }
+  
 
   getTotalAmount(){
     let grandTotal = 0;

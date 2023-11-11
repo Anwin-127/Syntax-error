@@ -1,9 +1,22 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+
+export function passwordsMatchValidator(): ValidatorFn {
+  return (control : AbstractControl): ValidationErrors | null =>{
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value
+
+    if(password && confirmPassword && password != confirmPassword){
+      return {passwordDontMatch : true
+      }
+    }
+    return null;
+  };
+}
 
 @Component({
   selector: 'app-login-page',
@@ -17,6 +30,15 @@ export class LoginPageComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
+  signUpForm = new FormGroup({
+    name : new FormControl('',Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required),
+  }, { validators  : passwordsMatchValidator() });
+
+  
+
   constructor(private authService: AuthenticationService,
      private renderer: Renderer2,
       private el: ElementRef,
@@ -25,11 +47,19 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  get name(){
+    return this.loginForm.get('email');
+  }
+
   get email() {
     return this.loginForm.get('email');
   }
   get password() {
     return this.loginForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.loginForm.get('confirmPassword');
   }
 
   ngAfterViewInit() {
@@ -64,5 +94,24 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['/home'])
     })
   }
+
+  submitSignUp() {
+    if(!this.signUpForm.valid){ 
+      return;
+    }
+
+    const { name, email, password } = this.signUpForm.value;
+    this.authService.signUp(name!, email!, password!).pipe(
+      this.toast.observe({
+        success : "Congrats! You are all signed up!",
+        loading : "Signing in",
+        error : ({err}) => `${err}`
+      })
+    ).subscribe(()=>{
+      this.router.navigate(['/home']);
+    })
+  }
+
+  
 
 }
