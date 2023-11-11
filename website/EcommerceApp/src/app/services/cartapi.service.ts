@@ -42,14 +42,20 @@ export class CartapiService {
     })
   }
 
-  removeCartData(product:any){
-    this.cartDataList.map((a:any, index:any)=>{
-      if(product.id == a.id){
-        this.cartDataList.splice(index,1)
+  removeCartData(product: any) {
+    const index = this.cartDataList.findIndex((a: any) => product.id === a.id);
+  
+    if (index !== -1) {
+      if (this.cartDataList[index].quantity > 1) {
+        this.cartDataList[index].quantity -= 1;
+      } else {
+        this.cartDataList.splice(index, 1);
       }
-    })
-    this.productList.next(this.cartDataList)
+    }
+  
+    this.productList.next(this.cartDataList);
   }
+  
 
 
   removeAllCart(){
