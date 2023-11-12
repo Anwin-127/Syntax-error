@@ -1,15 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { UserService } from '../user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CartapiService {
+export class CartapiService implements OnInit{
   cartDataList:any = [];
   productList = new BehaviorSubject<any>([])
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+    private userService: UserService) {}
+
+    ngOnInit(): void {
+     
+    }
 
   getProductData(){
     return this.productList.asObservable();
@@ -20,7 +26,7 @@ export class CartapiService {
     this.productList.next(product)
   }
 
-  addToCart(product: any) {
+  addToCart(email:string,product: any) {
     const existingProduct = this.cartDataList.find((p: any) => p.id === product.id);
   
     if (existingProduct) {
@@ -28,9 +34,11 @@ export class CartapiService {
     } else {
       this.cartDataList.push({ ...product, quantity: 1 });
     }
-  
+    
+    this.userService.updateUserProductList(email,this.cartDataList);
     this.productList.next(this.cartDataList);
     this.getTotalAmount();
+    
     console.log(this.cartDataList);
   }
   
@@ -42,7 +50,7 @@ export class CartapiService {
     })
   }
 
-  removeCartData(product: any) {
+  removeCartData(email:string,product: any) {
     const index = this.cartDataList.findIndex((a: any) => product.id === a.id);
   
     if (index !== -1) {
@@ -52,15 +60,16 @@ export class CartapiService {
         this.cartDataList.splice(index, 1);
       }
     }
-  
     this.productList.next(this.cartDataList);
+    this.userService.updateUserProductList(email,this.cartDataList);
   }
   
 
 
-  removeAllCart(){
-    this.cartDataList = []
-    this.productList.next(this.cartDataList)
+  removeAllCart(email:string){
+    this.cartDataList = [];
+    this.productList.next(this.cartDataList);
+    this.userService.updateUserProductList(email,this.cartDataList);
   }
 
 }

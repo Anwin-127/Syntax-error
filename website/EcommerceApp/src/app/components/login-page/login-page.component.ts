@@ -4,6 +4,7 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+import { UserService } from 'src/app/user.service';
 
 export function passwordsMatchValidator(): ValidatorFn {
   return (control : AbstractControl): ValidationErrors | null =>{
@@ -25,6 +26,7 @@ export function passwordsMatchValidator(): ValidatorFn {
 })
 export class LoginPageComponent implements OnInit {
 
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
@@ -40,7 +42,7 @@ export class LoginPageComponent implements OnInit {
   
 
   constructor(private authService: AuthenticationService,
-     private renderer: Renderer2,
+     private renderer: Renderer2,private userService: UserService,
       private el: ElementRef,
        private router: Router,
        private toast:HotToastService) { }
@@ -92,7 +94,13 @@ export class LoginPageComponent implements OnInit {
       )
     ).subscribe(() => {
       this.router.navigate(['/home'])
-    })
+    });
+    try{
+    this.userService.changeName(email!);
+  }
+    catch(e){
+      console.log("errorN : "+e)
+    }
   }
 
   submitSignUp() {
@@ -109,9 +117,18 @@ export class LoginPageComponent implements OnInit {
       })
     ).subscribe(()=>{
       this.router.navigate(['/home']);
-    })
+    });
+    try {this.userService.addNewUser(email!,{});
+    console.log("working")
+    }
+    catch(e){
+    console.log(e);
+    }
+    this.userService.changeName(email!);
   }
 
+  
+  
   
 
 }

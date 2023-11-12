@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartapiService } from 'src/app/services/cartapi.service';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,10 +9,15 @@ import { CartapiService } from 'src/app/services/cartapi.service';
 })
 export class CartComponent implements OnInit {
   products:any = [];
+  email:string = "";
   public allProducts: any = 0;
-  constructor(private cartApi:CartapiService) {}
+  constructor(private cartApi:CartapiService, private userService: UserService) {}
 
   ngOnInit(): void {
+    this.userService.currentName.subscribe(name => {
+      this.email = name;
+      console.log(" username : "+name)
+    });
     this.cartApi.getProductData().subscribe(res=>{
       this.products = res;
       this.allProducts = this.cartApi.getTotalAmount();
@@ -19,11 +25,11 @@ export class CartComponent implements OnInit {
   }
 
   removeProduct(item:any){
-    this.cartApi.removeCartData(item);
+    this.cartApi.removeCartData(this.email,item);
   }
 
   removeAllProduct(){
-    this.cartApi.removeAllCart();
+    this.cartApi.removeAllCart(this.email);
   }
 
 }
