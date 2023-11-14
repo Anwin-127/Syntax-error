@@ -23,6 +23,8 @@ export class HomeComponent {
       else { this.email = name; }
       console.log("new username : " + name)
     });
+
+
     this.api.getProduct().subscribe(res => {
       this.productList = res;
       this.productList.forEach((a: any) => {

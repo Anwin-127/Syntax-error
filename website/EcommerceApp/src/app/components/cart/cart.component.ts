@@ -10,6 +10,7 @@ import { UserService } from 'src/app/user.service';
 export class CartComponent implements OnInit {
   products:any = [];
   email:string = "";
+  len:number = 0;
   public allProducts: any = 0;
   constructor(private cartApi:CartapiService, private userService: UserService) {}
 
@@ -18,10 +19,26 @@ export class CartComponent implements OnInit {
       this.email = name;
       console.log(" username : "+name)
     });
-    this.cartApi.getProductData().subscribe(res=>{
-      this.products = res;
-      this.allProducts = this.cartApi.getTotalAmount();
-    })
+    
+    this.userService.getData(this.email).get().subscribe(ref => {
+      if(!ref.exists){
+        console.log("No Documents within current username!");
+      }
+      else{
+        const doc:any =  ref.data();
+        this.products = doc.products;
+        console.log(this.products)
+       
+      }
+    });
+
+    this.products = this.userService.getData(this.email);
+    this.len = Object.keys(this.products).length;
+
+    // this.cartApi.getProductData().subscribe(res=>{
+    
+    //   this.allProducts = this.cartApi.getTotalAmount();
+    // })
   }
 
   removeProduct(item:any){

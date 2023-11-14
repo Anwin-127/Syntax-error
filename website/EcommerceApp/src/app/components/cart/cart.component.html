@@ -1,4 +1,4 @@
-<ng-container *ngIf="products.length != 0">
+<ng-container *ngIf="len != 0">
 <div class="card-table">
     <div class="card-product">
         <table class="table table-responsive">
@@ -14,15 +14,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of products, let i = index">
-                    <td>{{i+1}}</td>
-                    <td>{{item.title}}</td>
-                    <td><img src="{{item.image}}" style="width: 120px;" alt=""></td>
-                    <td>{{item.price}}</td>
-                    <td>{{item.quantity}}</td>
-                    <td>{{item.total}}</td>
-                    <td><button (click)="removeProduct(item)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
-                </tr>
+                    <tr *ngFor="let item of products , let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.title}}</td>
+                        <td><img src="{{item.image}}" style="width: 120px;" alt=""></td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.quantity}}</td>
+                        <!-- <td>20</td> -->
+                        <td>{{item.total}}</td>
+                        <td><button (click)="removeProduct(item)" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                    </tr>
                 <tr>
                     <td colspan="4"></td>
                     <td><button (click)="removeAllProduct()" class="btn btn-danger">Remve all items</button></td>
@@ -37,7 +38,7 @@
 
 </ng-container>
 
-<ng-container *ngIf="products.length == 0">
+<ng-container *ngIf="len == 0">
 <div class="container">
     <div class="card">
         <h4 class="card-title">My cart</h4>

@@ -31,6 +31,7 @@ export class CartapiService implements OnInit{
   
     if (existingProduct) {
       existingProduct.quantity += 1;
+      existingProduct.price += existingProduct;
     } else {
       this.cartDataList.push({ ...product, quantity: 1 });
     }
