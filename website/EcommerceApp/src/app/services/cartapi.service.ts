@@ -31,7 +31,8 @@ export class CartapiService implements OnInit{
   
     if (existingProduct) {
       existingProduct.quantity += 1;
-      existingProduct.price += existingProduct;
+      existingProduct.total = existingProduct.quantity * existingProduct.price; 
+      // existingProduct.price += existingProduct;
     } else {
       this.cartDataList.push({ ...product, quantity: 1 });
     }
@@ -57,12 +58,15 @@ export class CartapiService implements OnInit{
     if (index !== -1) {
       if (this.cartDataList[index].quantity > 1) {
         this.cartDataList[index].quantity -= 1;
+        this.cartDataList[index].total = this.cartDataList[index].quantity * this.cartDataList[index].price; 
       } else {
         this.cartDataList.splice(index, 1);
+        this.cartDataList.total = this.cartDataList.price;
       }
     }
-    this.productList.next(this.cartDataList);
     this.userService.updateUserProductList(email,this.cartDataList);
+    this.productList.next(this.cartDataList);
+    
   }
   
 

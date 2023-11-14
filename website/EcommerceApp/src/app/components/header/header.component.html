@@ -4,12 +4,12 @@
         <p>FLOPKART</p>
     </div>
     <ul class='nav-menu'>
-        <li><a style="  text-decoration: none;"  routerLink="/getstarted">Get Started</a></li>
-        <li><a style="  text-decoration: none;"  routerLink="/home">Home</a></li>
-        <li><a style="  text-decoration: none;" routerLink="/home">Recommendation</a></li>
+        <li><a style="  text-decoration: none;"  routerLink="/getstarted" (click)="onClick()">Get Started</a></li>
+        <li><a style="  text-decoration: none;"  routerLink="/home" (click)="onClick()">Home</a></li>
+        <li><a style="  text-decoration: none;" routerLink="/home" (click)="onClick()">Recommendation</a></li>
     </ul>
     <div class="cart">
-        <a style="  text-decoration: none;"  routerLink="/cart">
+        <a style="  text-decoration: none;"  routerLink="/cart" (click)="onClick()">
             <i style="font-size: 30px;" class="fa-solid fa-cart-shopping"></i>
         </a>
         <div class="badge bg-danger">{{totalItemNumber}}</div>

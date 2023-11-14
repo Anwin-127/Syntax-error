@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CartapiService } from 'src/app/services/cartapi.service';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -19,18 +18,22 @@ export class HeaderComponent implements OnInit{
     this.userService.currentName.subscribe(name => {
       if (name === null) {}
       else { this.email = name; }
-      console.log("username : " + name)
+      console.log("username at header : " + name)
     });
+
     this.userService.getData(this.email).get().subscribe(ref => {
       if(!ref.exists){
         console.log("No Documents within current username!");
       }
       else{
         const doc:any =  ref.data();
-        this.totalItemNumber = Object.keys(doc.products).length;
+        this.totalItemNumber = doc.products.length;
         console.log(this.totalItemNumber)
-       
       }
     });
+  }
+
+  onClick(){
+    this.ngOnInit();
   }
 }

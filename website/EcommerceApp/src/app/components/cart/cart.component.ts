@@ -10,7 +10,6 @@ import { UserService } from 'src/app/user.service';
 export class CartComponent implements OnInit {
   products:any = [];
   email:string = "";
-  len:number = 0;
   public allProducts: any = 0;
   constructor(private cartApi:CartapiService, private userService: UserService) {}
 
@@ -31,9 +30,7 @@ export class CartComponent implements OnInit {
        
       }
     });
-
-    this.products = this.userService.getData(this.email);
-    this.len = Object.keys(this.products).length;
+  
 
     // this.cartApi.getProductData().subscribe(res=>{
     
@@ -43,10 +40,14 @@ export class CartComponent implements OnInit {
 
   removeProduct(item:any){
     this.cartApi.removeCartData(this.email,item);
+    console.log("deleted")
+    this.ngOnInit();
+
   }
 
   removeAllProduct(){
     this.cartApi.removeAllCart(this.email);
+    this.ngOnInit();
   }
 
 }
