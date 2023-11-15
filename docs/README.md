@@ -15,3 +15,19 @@ To get started with Flopkart, follow these steps:
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/Anwin-127/Syntax-error.git
+## Run the Application
+
+npm start
+
+## Sign Up:
+
+Visit the registration page and create an account.
+
+## Login:
+
+Use your credentials to log in.
+
+## Shopping Cart:
+
+Explore products and add them to your cart.
+View and manage your cart.
