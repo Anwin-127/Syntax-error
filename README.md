@@ -14,7 +14,7 @@ syntax-error
 3. Explore [Docs](https://github.com/Anwin-127/Syntax-error/tree/master/docs)
 4. Embed video of project demo
 ## Live Project link
-[Flopkart]([https://github.com/Anwin-127/Syntax-error/tree/master/docs](https://e-commerce-b8b1a.web.app/))
+[Flopkart](https://e-commerce-b8b1a.web.app/)
 ## Libraries used
 Bootstrap v5.3.2
 ## How to configure
