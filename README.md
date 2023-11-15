@@ -7,7 +7,7 @@ Flopkart is an e-commerce website. Its a shopping website that has its own cart 
 ## Team Id
 syntax-error
 ## Link to product walkthrough
-[link to video]
+[link to video](https://www.loom.com/share/d74579c6b5854062a730663ce0a86cd6?sid=352668a6-21ce-4552-80ee-c801464fbf2a)
 ## How it Works ?
 1. Explaining the working of project
 2. So first we navigate to the getStarted page where a get Started button exists.If you press that it redirect you to a login/signup page.On signup, a database is created in firebase for every user to enable cart service. On login, user retrieves his database for reviewing previous cart items. Then we navigate to home page where we come across on a list of shopping items. This data is retrieved from fakestore api
