@@ -2,7 +2,7 @@
 # Flopkart
 Flopkart is an e-commerce website. Its a shopping website that has its own cart and saves it to the database. The user can retrieve his cart information when user login. It has its own databse for storing user information and you have to sign up for enabling cart service.
 ## Team members
-1. Anwin Antony [github.com/Anwin-127]
+1. Anwin Antony [github.com/Anwin-127](https://github.com/Anwin-127)
 2. Jishnu Suresh [Embed perosnal github URL]
 ## Team Id
 syntax-error
