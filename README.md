@@ -11,7 +11,8 @@ syntax-error
 ## How it Works ?
 1. Explaining the working of project
 2. So first we navigate to the getStarted page where a get Started button exists.If you press that it redirect you to a login/signup page.On signup, a database is created in firebase for every user to enable cart service. On login, user retrieves his database for reviewing previous cart items. Then we navigate to home page where we come across on a list of shopping items. This data is retrieved from fakestore api.
-3. Embed video of project demo
+3. Explore [Docs](https://github.com/Anwin-127/Syntax-error/edit/master/docs/README.md)
+4. Embed video of project demo
 ## Libraries used
 Bootstrap v5.3.2
 ## How to configure
