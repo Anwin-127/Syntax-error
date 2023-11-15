@@ -17,5 +17,6 @@ Bootstrap v5.3.2
 ## How to configure
 clone this rep to a directory.
 ## How to Run
-npm start
+###npm start
+
 Run npm start on the project directory(Syntax-error/website/EcommerceApp)
