@@ -17,7 +17,7 @@ To get started with Flopkart, follow these steps:
    git clone https://github.com/Anwin-127/Syntax-error.git
 ## Run the Application
 
-npm start
+```npm start```
 
 ## Sign Up:
 
